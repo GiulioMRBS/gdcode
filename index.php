@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home page</title>
+        <title>Login page</title>
     </head>
     <body>
         <?php
