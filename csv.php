@@ -3,19 +3,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home page</title>
+        <style>
+            *{
+                font-family: arial;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            td{
+                border: 1px solid black;
+                padding: 2px;
+            }
+        </style>
     </head>
-    <style>
-        *{
-            font-family: arial;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        td{
-            border: 1px solid black;
-            padding: 2px;
-        }
-    </style>
     <body>
         <?php
         if (($handle = fopen("myfile.csv", "r")) !== FALSE) {
@@ -24,7 +24,7 @@
                 for ($c = 0; $c < count($data); $c++) {
                     echo '<tr>';
                     $toadd = $data[$c];
-                    $arr =  preg_split("/[\s]+/", $toadd);
+                    $arr = preg_split("/[\s]+/", $toadd);
                     foreach ($arr as $value) {
                         echo '<td>' . $value . '</td>';
                     }
