@@ -46,7 +46,7 @@
                         if (method_exists($ext, $method))
                             return call_user_func_array(array($ext, $method), $args);
                     }
-                    throw new Exception("This Method {$method} doesn't exists");
+                    throw new Exception("The method {$method} doesn't exists");
                 }
 
             }
