@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Reload</title>
+        <link href="favicon.ico" type="image/x-icon" rel="icon" >
+        <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" >
+        <style type="text/css">
+            *{margin: 10px;}
+        </style>
+        <script type="text/javascript">
+            stuffsG = {
+                intG : null,
+                i : 0,
+                arrayG : ['one','two','three','four'],
+                showG : function(context){
+                    if(context.arrayG.length==context.i)
+                        context.i=0;
+                    document.getElementById('gd').innerHTML = context.arrayG[context.i];
+                    context.i++;
+                },
+                startG : function(){
+                    this.showG(this);
+                    this.intG = window.setInterval(this.showG, 1000, this);
+                },
+                stopG : function(){
+                    this.i=0;
+                    window.clearInterval(this.intG);
+                    this.showG(this);
+                },
+                pauseG : function(){
+                    window.clearInterval(this.intG);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Reload content</h1>
+        <div>
+            <button onclick="stuffsG.startG();">Start</button>
+            <button onclick="stuffsG.pauseG();">Pause</button>
+            <button onclick="stuffsG.stopG();">Stop</button>
+        </div>
+        <div id="gd"></div>
+    </body>
+</html>
