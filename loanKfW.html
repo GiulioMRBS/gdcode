@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<title>Piano KfW</title>
+		<!--link href="favicon.ico" rel="shortcut icon"-->
+		<link rel="stylesheet" type="text/css" href="loanStyle.css" />		
+	</head>
+	<body>
+		<table id="titleTable"></table>
+		<table id="mainTable"></table>
+		<script type="text/javascript" src = "loanCode.js"></script>
+		<script type="text/javascript">
+		(function(){
+			"use strict";
+			var rest = 50000;
+			var rate = 0.013;
+			var monthly = 172.54;
+			var mStart = 3, yStart=2017;
+			var extra = {
+				'03.2017': 6000,
+				'04.2017': 3000,
+				'05.2017': 3000,
+				'06.2017': 3000,
+				'07.2017': 3000,
+				'01.2018': 3000,
+				'06.2018': 3000,
+				'01.2019': 3000,
+				'06.2019': 3000,
+				'01.2020': 3000,
+				'06.2020': 3000,
+				'01.2021': 3000,
+				'06.2021': 3000,
+				'01.2022': 3000,
+				'06.2022': 3000
+			};
+			calculate(rest, rate, monthly, mStart, yStart, extra);
+		})()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+#titleTable {
+	background-color: white;
+	border-collapse: collapse;
+	position: fixed;
+	left: 8px;
+	top: 5px;
+}
+#mainTable{
+	border-collapse: collapse;
+	margin-top: 35px;
+}
+td {
+	border:1px solid black;
+	padding: 5px;
+	width: 150px;
+}
+th {
+	border:1px solid black;
+	padding: 5px;
+	width: 150px;
+}
