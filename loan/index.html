@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Tilgungsplan</title>
+        <link rel="stylesheet" type="text/css" href="loanStyle.css" />
+        <script type="text/javascript" src="loanCode.js"></script>
+    </head>
+    <body>
+        <form onsubmit="recalculate()">
+            <table id="titleTable">
+                <tr>
+                    <td colspan="5">
+                        <span onclick="calculate('bsk', this)">Calculate loan BSK</span>
+                        <span onclick="calculate('kfw', this)">Calculate loan KfW</span>
+                    </td>
+                    <td>
+                        <label for="date">Datum</label>
+                    </td>
+                    <td>
+                        <label for="amount">Summe</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Datum</td>
+                    <td>Tilgung</td>
+                    <td>Zinsen</td>
+                    <td>Restschuld</td>
+                    <td>Sondertilgung</td>
+                    <td>
+                        <select id="date"></select>
+                    </td>
+                    <td>
+                        <input id="amount" required="required" size="5">
+                        <button>Apply</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script type="text/javascript">
+            (function noSubmit() {
+                document.forms[0].addEventListener("submit", function (e) {
+                    e.preventDefault();
+                });
+            })();
+        </script>
+        <table id="mainTable"></table>
+    </body>
+</html>
