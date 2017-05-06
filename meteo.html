@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<title>Meteo FVG</title>
+		<link href="favicon.ico" rel="shortcut icon">
+		<style type="text/css">
+		/*table {
+			border-collapse: collapse;
+			transform: scale(0.8) translate(0px, -219px);
+		}*/
+		body{
+			display: table;
+			margin: auto;
+		}
+		iframe{
+			height: 370px;
+			width: 630px;
+		}
+		</style>
+	</head>
+	<body>
+		<table id="mainTable"></table>
+		<script type="text/javascript">
+		//window.location.href = "http://www.mciberlin.org/";
+		(function(){
+			"use strict";
+			var tr;
+			for (var i = 0; i<7; i++){
+				if(!(i%2)){
+					tr = document.createElement('tr');
+					mainTable.appendChild(tr);
+				}
+				var td = document.createElement('td');
+				tr.appendChild(td);
+				var f = document.createElement('iframe');
+				f.setAttribute('src','http://www.ilmeteo.it/portale/meteo/previsioni.php?regione=Friuli+Venezia+Giulia&g='+i+'&gm=11');
+				td.appendChild(f);
+			}
+		})()
+		</script>
+	</body>
+</html>
