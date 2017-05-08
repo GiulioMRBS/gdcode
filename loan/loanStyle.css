@@ -14,7 +14,7 @@
 }
 span{
     cursor: pointer;
-    margin: 0 50px;
+    margin: 0 20px;
     text-decoration: underline;
 }
 table{
@@ -23,5 +23,5 @@ table{
 td{
     border: 1px solid black;
     padding: 5px;
-    width: 155px;
+    width: 110px;
 }

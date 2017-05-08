@@ -2,17 +2,18 @@
 <html>
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Tilgungsplan</title>
+        <title>Tilgungspläne</title>
         <link rel="stylesheet" type="text/css" href="loanStyle.css" />
+        <script type="text/javascript" src="loanConfig.js"></script>
         <script type="text/javascript" src="loanCode.js"></script>
     </head>
     <body>
-        <form onsubmit="recalculate()">
+        <form onsubmit="addExtra()">
             <table id="titleTable">
                 <tr>
                     <td colspan="5">
-                        <span onclick="calculate('bsk', this)">Calculate loan BSK</span>
-                        <span onclick="calculate('kfw', this)">Calculate loan KfW</span>
+                        <span onclick="calculate('bsk', this)">Calculate loan BSK (615.92)</span>
+                        <span onclick="calculate('kfw', this)">Calculate loan KfW (172.54)</span>
                     </td>
                     <td>
                         <label for="date">Datum</label>
@@ -31,7 +32,7 @@
                         <select id="date"></select>
                     </td>
                     <td>
-                        <input id="amount" required="required" size="5">
+                        <input id="amount" required="required" size="3" maxlength="5">
                         <button>Apply</button>
                     </td>
                 </tr>
@@ -39,9 +40,10 @@
         </form>
         <script type="text/javascript">
             (function noSubmit() {
-                document.forms[0].addEventListener("submit", function (e) {
+                document.forms[0].addEventListener("submit", (e) => {
                     e.preventDefault();
                 });
+
             })();
         </script>
         <table id="mainTable"></table>

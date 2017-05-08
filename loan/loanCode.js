@@ -1,5 +1,6 @@
-/*global date*/
 /*global amount*/
+/*global config*/
+/*global date*/
 
 let name;
 
@@ -33,7 +34,7 @@ function calculate(n, obj) {
             rest = rest - config[name].extra[monthName];
             extraText = config[name].extra[monthName].toString();
             if (d.getFullYear() < yStart || (d.getFullYear() === yStart && d.getMonth() < mStart)) {
-                extraText += '<span onclick="recalculate(\'' + monthName + '\')">X</span>';
+                extraText += '<span onclick="removeExtra(\'' + monthName + '\')">X</span>';
             }
         } else {
             if (config[name].onceAYear) {
@@ -49,14 +50,14 @@ function calculate(n, obj) {
         rest = rest - monthlySinking;
         if (rest < 0) {
             monthlySinking = monthlySinking + rest;
-            monthlyInterest = "0";
-            rest = "0";
+            monthlyInterest = 0;
+            rest = 0;
         }
         let tr = createAndAppend(mainTable, 'tr');
         createAndAppend(tr, 'td', monthName);
-        createAndAppend(tr, 'td', monthlySinking);
-        createAndAppend(tr, 'td', monthlyInterest);
-        createAndAppend(tr, 'td', rest);
+        createAndAppend(tr, 'td', monthlySinking.toFixed(2));
+        createAndAppend(tr, 'td', monthlyInterest.toFixed(2));
+        createAndAppend(tr, 'td', rest.toFixed(2));
         createAndAppend(tr, 'td', extraText);
 
         if (mStart + 1 === 13) {
@@ -66,63 +67,29 @@ function calculate(n, obj) {
             mStart = mStart + 1;
         }
     }
-    function createAndAppend(parent, type, content) {
-        let el = document.createElement(type);
-        if (content) {
-            el.innerHTML = content;
-        }
-        parent.appendChild(el);
-        return el;
+}
+
+function createAndAppend(parent, type, content) {
+    let el = document.createElement(type);
+    if (content) {
+        el.innerHTML = content;
+    }
+    parent.appendChild(el);
+    return el;
+}
+
+function addExtra() {
+    let d = date.value;
+    let s = amount.value;
+    if (d && s) {
+        config[name].extra[d] = s;
+        calculate(name);
     }
 }
 
-function recalculate(month) {
-    if (month && config[name].extra.hasOwnProperty(month)) {
+function removeExtra(month) {
+    if (config[name].extra.hasOwnProperty(month)) {
         delete config[name].extra[month];
         calculate(name);
-    } else {
-        let d = date.value;
-        let s = amount.value;
-        if (d && s) {
-            config[name].extra[d] = s;
-            calculate(name);
-        }
     }
 }
-
-const config = {
-    bsk: {
-        onceAYear: true,
-        rest: 190000,
-        pattern: "2500",
-        errorMessage: "Only 2500",
-        rate: 0.0189,
-        monthly: 615.92,
-        mStart: 3,
-        yStart: 2017,
-        extra: {
-            '03.2017': 2500,
-            '01.2018': 2500,
-            '01.2019': 2500,
-            '01.2020': 2500,
-            '01.2021': 2500,
-            '01.2022': 2500,
-            '01.2023': 2500,
-            '01.2024': 2500,
-            '01.2025': 2500,
-            '01.2026': 2500
-        }
-    },
-    kfw: {
-        rest: 50000,
-        pattern: "[0-9]{4,5}",
-        errorMessage: "Only numbers between 1000 and 99999",
-        rate: 0.013,
-        monthly: 172.54,
-        mStart: 3,
-        yStart: 2017,
-        extra: {
-            '03.2017': 6000
-        }
-    }
-};
