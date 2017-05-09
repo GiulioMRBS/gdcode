@@ -9,41 +9,45 @@
     </head>
     <body>
         <form onsubmit="addExtra()">
-            <table id="titleTable">
-                <tr>
-                    <td colspan="5">
-                        <span onclick="calculate('bsk', this)">Calculate loan BSK (615.92)</span>
-                        <span onclick="calculate('kfw', this)">Calculate loan KfW (172.54)</span>
-                    </td>
-                    <td>
-                        <label for="date">Datum</label>
-                    </td>
-                    <td>
-                        <label for="amount">Summe</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Datum</td>
-                    <td>Tilgung</td>
-                    <td>Zinsen</td>
-                    <td>Restschuld</td>
-                    <td>Sondertilgung</td>
-                    <td>
-                        <select id="date"></select>
-                    </td>
-                    <td>
-                        <input id="amount" required="required" size="3" maxlength="5">
-                        <button>Apply</button>
-                    </td>
-                </tr>
-            </table>
+            <div id="tableContainer">
+                <table id="titleTable">
+                    <tr>
+                        <td colspan="2">Sondertilgung rechnen</td>
+                        <td colspan="5">
+                            <span onclick="calculate('bsk', this)">Calculate loan BSK (615.92)</span>
+                            <span onclick="calculate('kfw', this)">Calculate loan KfW (172.54)</span>
+                        </td>
+                        <td>
+                            <label for="date">Datum</label>
+                        </td>
+                        <td>
+                            <label for="amount">Summe</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input id="before" checked required name="when" type="radio" value="before"><label for="before">Bevor</label></td>
+                        <td><input id="after" name="when" type="radio" value="after"><label for="after">Danach</label></td>
+                        <td>Datum</td>
+                        <td>Tilgung</td>
+                        <td>Zinsen</td>
+                        <td>Restschuld</td>
+                        <td>Sondertilgung</td>
+                        <td>
+                            <select id="date"></select>
+                        </td>
+                        <td>
+                            <input id="amount" required="required" size="3" maxlength="5">
+                            <button>Apply</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </form>
         <script type="text/javascript">
             (function noSubmit() {
                 document.forms[0].addEventListener("submit", (e) => {
                     e.preventDefault();
                 });
-
             })();
         </script>
         <table id="mainTable"></table>

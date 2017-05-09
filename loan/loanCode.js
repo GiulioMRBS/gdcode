@@ -16,6 +16,9 @@ function calculate(n, obj) {
     let mainTable = createAndAppend(document.body, 'table');
     mainTable.setAttribute('id', 'mainTable');
 
+    let titleDiv = document.getElementById("tableContainer");
+    mainTable.setAttribute('style', 'margin-top: ' + (titleDiv.scrollHeight - 1) + 'px;'); /* clientHeight offsetHeight   */
+
     amount.setAttribute('pattern', config[name].pattern);
     amount.setAttribute('title', config[name].errorMessage);
 
@@ -30,6 +33,14 @@ function calculate(n, obj) {
     while (rest > 0) {
         let monthName = ('0' + mStart).slice(-2) + '.' + yStart;
         let extraText = '-';
+        let monthlyInterest, monthlySinking;
+
+        if (document.forms[0].when.value === "before") {
+            monthlyInterest = (rest * config[name].rate) / 12;
+            monthlySinking = config[name].monthly - monthlyInterest;
+            rest = rest - monthlySinking;
+        }
+
         if (config[name].extra && config[name].extra.hasOwnProperty(monthName)) {
             rest = rest - config[name].extra[monthName];
             extraText = config[name].extra[monthName].toString();
@@ -45,9 +56,13 @@ function calculate(n, obj) {
                 createAndAppend(date, 'option', monthName);
             }
         }
-        let monthlyInterest = (rest * config[name].rate) / 12;
-        let monthlySinking = config[name].monthly - monthlyInterest;
-        rest = rest - monthlySinking;
+
+        if (document.forms[0].when.value === "after") {
+            monthlyInterest = (rest * config[name].rate) / 12;
+            monthlySinking = config[name].monthly - monthlyInterest;
+            rest = rest - monthlySinking;
+        }
+
         if (rest < 0) {
             monthlySinking = monthlySinking + rest;
             monthlyInterest = 0;

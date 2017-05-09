@@ -1,27 +1,36 @@
-#mainTable{
-    margin-top: 70px;
+#tableContainer{
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
 #titleTable{
     background-color: white;
     font-weight: bold;
-    position: fixed;
-    left: 8px;
-    top: 5px;
-    text-align: center;
+}
+.hiddenTd {
+    border: none;
+    min-width: 111px;
 }
 .redColor{
     color: red;
 }
+body{
+    display: table;
+    margin: auto;
+    text-align: center;
+}
 span{
     cursor: pointer;
-    margin: 0 20px;
+    margin: 0 auto;
+    padding: 0 10px;
     text-decoration: underline;
 }
 table{
     border-collapse: collapse;
+    margin: 0 auto;
 }
 td{
     border: 1px solid black;
+    min-width: 110px;
     padding: 5px;
-    width: 110px;
 }
